@@ -53,7 +53,9 @@ Person.prototype.eat = function(someFood){
   if (this.stomach.length < 10) {
     this.stomach.push(someFood);
   }
- 
+}
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
 }
 
 
@@ -80,7 +82,6 @@ this.odometer = 0;
 
 Car.prototype.fill = function(gallons){
     this.tank = this.tank + gallons; 
-
 };
 Car.prototype.drive = function(distance){
   this.odometer = this.odometer + distance;
@@ -95,21 +96,22 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
+
+Baby.prototype = Object.create(Person.prototype);
 function Baby(name, age, favoriteToy) {
-this.name = name;
-this.age = age;
+Person.call(this, name,age);
 this.favoriteToy = favoriteToy;
 }
 
 Baby.prototype.play = function(){
-  console.log `playing with ${this.favoriteToy}, ${this.favoriteToy} being the favorite toy.`
+  return `playing with ${this.favoriteToy}, ${this.favoriteToy} being the favorite toy.`
 }
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
+  1. Global Object Binding - 
   2. 
   3. 
   4. 
